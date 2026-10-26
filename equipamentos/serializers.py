@@ -8,6 +8,12 @@ class EquipamentoSerializer(serializers.ModelSerializer):
         fields = '__all__'
 
 
+class EquipamentoResumoSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Equipamento
+        fields = ('codigo_patrimonial', 'nome')
+
+
 class MovimentacaoSerializer(serializers.ModelSerializer):
     class Meta:
         model = Movimentacao
@@ -16,7 +22,15 @@ class MovimentacaoSerializer(serializers.ModelSerializer):
 
 
 class OrdemServicoSerializer(serializers.ModelSerializer):
+    equipamento_detalhes = EquipamentoResumoSerializer(
+        source='equipamento',
+        read_only=True,
+    )
+
     class Meta:
         model = OrdemServico
         fields = '__all__'
-        read_only_fields = ('data_abertura', 'data_atualizacao')
+        read_only_fields = (
+            'data_abertura',
+            'data_atualizacao',
+        )
