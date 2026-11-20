@@ -1,0 +1,19 @@
+# Variáveis de ambiente
+.env
+.env.*
+!.env.example
+
+# Banco de dados local
+db.sqlite3
+*.sqlite3
+
+# Ambiente virtual
+venv/
+.venv/
+
+# Python
+__pycache__/
+*.py[cod]
+
+# Arquivos locais
+.DS_Store
